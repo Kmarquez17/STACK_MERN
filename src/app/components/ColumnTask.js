@@ -6,9 +6,9 @@ class ColumnTask extends Component {
 	};
 
 	editTask = () => {
-		this.props.editTask(this.props.task._id);
+		this.props.editTask(this.props.task);
 	};
-
+	
 	render() {
 		const { title, description } = this.props.task;
 		return (

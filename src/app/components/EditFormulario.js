@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Fomulario extends Component {
+class EditFormulario extends Component {
 	constructor() {
 		super();
 		this.state = {
@@ -10,13 +10,26 @@ class Fomulario extends Component {
 		};
 	}
 
+	componentWillMount() {
+		console.log('Component WILL MOUNT!')
+	 }
+  
+	 componentDidMount() {
+		this.setState({
+			title: this.props.task.title,
+			description: this.props.task.description,
+		})
+	 }
+
+	 componentWillReceiveProps(newProps){
+		 console.log(newProps.task)
+	 }
 	addTask = e => {
 		e.preventDefault();
-
 		//Creamos el objeto hacer mandado a la peticion
 		const task = {
 			title: this.state.title,
-			description: this.state.description,
+			description: this.state.description
 		};
 		this.props.addTask(task);
 		e.currentTarget.reset();
@@ -28,8 +41,9 @@ class Fomulario extends Component {
 			[name]: value,
 		});
 	};
-
+	
 	render() {
+		console.log('Aqui render')
 		return (
 			<div className="card">
 				<div className="card-content">
@@ -40,6 +54,7 @@ class Fomulario extends Component {
 									name="title" 
 									type="text" 
 									placeholder="Task Title" 
+									value={this.state.title}
 								/>
 							</div>
 						</div>
@@ -50,10 +65,10 @@ class Fomulario extends Component {
 									name="description"
 									placeholder="Task Description"
 									className="materialize-textarea"
+									value={this.state.description}
 								/>
 							</div>
 						</div>
-
 						<button className="btn waves-effect waves-light red">SEND</button>
 					</form>
 				</div>
@@ -62,4 +77,4 @@ class Fomulario extends Component {
 	}
 }
 
-export default Fomulario;
+export default EditFormulario;
