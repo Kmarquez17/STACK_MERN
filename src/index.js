@@ -13,7 +13,7 @@ app.use(morgan('dev'));
 app.use(express.json());
 
 //Routes
-app.use('/api/tasks',require('./routes/tasks.route.js'))
+app.use('/api',require('./routes/tasks.route.js'))
 
 //Archivos estaticos
 app.use(express.static(path.join(__dirname,'public')))
